@@ -13,7 +13,7 @@ const allowedOrigins = [
   "https://imcia.vercel.app",
   "https://aquafitia.vercel.app/",
   "iam-fit-analyzer.vercel.app",
-  "https://iam-fit-analyzer-flayrys-projects.vercel.app/",
+  "https://iam-fit-analyzer-flayrys-projects.vercel.app",
   "http://192.168.10.2:8080",
   "http://localhost:8080"
 ];
