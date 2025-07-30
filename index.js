@@ -11,12 +11,12 @@ const allowedOrigins = [
   "http://localhost:5173", 
   "https://imcc-h4me.vercel.app",
   "https://imcia.vercel.app",
-  "https://aquafitia.vercel.app/",
-  "iam-fit-analyzer.vercel.app",
+  "https://aquafitia.vercel.app",
   "https://iam-fit-analyzer-flayrys-projects.vercel.app",
   "http://192.168.10.2:8080",
   "http://localhost:8080"
 ];
+
 
 app.use(cors({
   origin: function(origin, callback) {
