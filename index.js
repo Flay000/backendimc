@@ -10,21 +10,28 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173", 
   "https://imcc-h4me.vercel.app",
-  "https://imcia.vercel.app", // domínio do seu frontend na Vercel
-  // adicione outros domínios se precisar
+  "https://imcia.vercel.app",
+  "https://aquafitia.vercel.app/",
+  "iam-fit-analyzer.vercel.app",
+
+  "http://192.168.10.2:8080",
+  "http://localhost:8080"
 ];
 
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // permite requests sem origem (ex: Postman)
+    console.log("Origin da requisição:", origin); // 👈 Adicione isso
+    if (!origin) return callback(null, true); 
     if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = "The CORS policy for this site does not allow access from the specified Origin.";
+      const msg = "CORS policy não permite acesso da origem especificada.";
       return callback(new Error(msg), false);
     }
     return callback(null, true);
   },
   credentials: true,
 }));
+
+
 
 app.use(express.json());
 
