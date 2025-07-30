@@ -9,7 +9,8 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173", 
-  "https://imcc-h4me.vercel.app", // domínio do seu frontend na Vercel
+  "https://imcc-h4me.vercel.app",
+  "https://imcia.vercel.app", // domínio do seu frontend na Vercel
   // adicione outros domínios se precisar
 ];
 
