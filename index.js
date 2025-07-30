@@ -7,11 +7,22 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 
-// Configura o CORS corretamente
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://imcc-h4me.vercel.app", // domínio do seu frontend na Vercel
+  // adicione outros domínios se precisar
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // ou o domínio do seu front no Render
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // permite requests sem origem (ex: Postman)
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = "The CORS policy for this site does not allow access from the specified Origin.";
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -19,7 +30,7 @@ app.use(express.json());
 // Rotas
 app.use("/api/auth", authRoutes);
 
-// Conexão com o MongoDB
+// Conexão com MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("✅ Conectado ao MongoDB"))
   .catch((err) => console.error("❌ Erro ao conectar ao MongoDB:", err));
