@@ -14,6 +14,8 @@ const allowedOrigins = [
   "https://aquafitia.vercel.app",
   "https://iam-fit-analyzer-flayrys-projects.vercel.app",
   "http://192.168.10.2:8080",
+  "aqua-fit-ia.vercel.app",
+  "https://aqua-fit-ia.vercel.app",
   "http://localhost:8080"
 ];
 
