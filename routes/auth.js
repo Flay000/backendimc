@@ -4,38 +4,6 @@ const User = require("../models/User"); // seu model de usuário
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// Registro
-router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-
-  try {
-    // Verifica se o usuário já existe
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "Email já está em uso" });
-    }
-;
-    // Criptografa a senha
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Cria o novo usuário
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-    });
-
-    // Salva no banco
-    const savedUser = await newUser.save();
-
-    res.status(201).json({ message: "Usuário registrado com sucesso", user: { id: savedUser._id, email: savedUser.email } });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Erro ao registrar usuário" });
-  }
-});
-
-
 // Login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -87,6 +55,7 @@ router.post('/register', async (req, res) => {
     // Verifica se o usuário já existe
     const existingUser = await User.findOne({ email });
     if (existingUser) {
+      console.log('erro ao registrar', error)
       return res.status(400).json({ message: "Email já está em uso" });
     }
 
