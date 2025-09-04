@@ -57,9 +57,12 @@ router.post('/register', async (req, res) => {
     if (existingUser) {
       console.log('erro ao registrar', error)
       return res.status(400).json({ message: "Email já está em uso" });
-    }else {
-      return res.status(400).json({message:"Username já está em uso"})
     }
+    const existeName = await User.findOne({ username });
+    if(existeName){
+      return res.status(400).json({ message: "Nome de usuário já está em uso" });
+    }
+    
 
     // Criptografa a senha
     const hashedPassword = await bcrypt.hash(password, 10);
